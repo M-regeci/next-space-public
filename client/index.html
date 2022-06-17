@@ -1,0 +1,140 @@
+<head>
+
+    <title>Next Space Hub</title>
+    <meta content="Next Space Hub" name="description">
+
+    <script src="https://code.jquery.com/jquery-1.8.2.js" type="text/javascript"></script>
+
+    <!-- get browser permissions -->
+    <script src="script/media-controller.js"></script>
+
+    <link href="css/index.scss" rel="stylesheet">
+    <link href="css/pop-up.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="topnav">
+        
+        <a href="#home" id="sandwich" style="padding-top: 20px; padding-right: 25px; font-size:26px;"><i class="fa fa-user" aria-hidden="true"></i></a>
+        <h1> NextSpace>></h1>
+
+      </div>
+      
+
+
+
+<div class='popup'>
+    <div class='cnt223'>
+        <h2 id="enter_name">Enter your name:</h2>
+        <form>
+            <input id="to" name="fname" size="20" style="width: 100%; font-size: 18px" type="text" autofocus/>
+            <p id="message" style="color:red; font-size:12px; display:none; padding-bottom: 0;padding-top: 0; margin-bottom: 0;">Invalid length! Name must contain 2-15 characters.</p>
+
+            <input id="submit" class="button"  value="Save" onclick="saveName()">
+            <button id="cancel" class="close">Close</button>
+        </form>
+        <!-- <button id="submit" class="button close" onclick="saveName();">Save</button>
+        <button class="button close" style="background-color: #353434;">Close</button> -->
+    </div>
+</div>
+<script>
+    var input = document.getElementById("to");
+    input.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("submit").click();
+      }
+    });
+    </script>
+
+<div id="spaces">
+  
+
+    <h3 id="pick">Pick your room <var id="demos"> </var>:</h3>
+    <section id="slider">
+        <input type="radio" name="slider" value="s2" id="s2">
+        <input type="radio" name="slider" value="s3" id="s3" checked>
+        <input type="radio" name="slider" value="s4" id="s4">
+        <!-- <label for="s1" id="slide1"></label> -->
+        <label for="s2" id="slide2">
+            <div class="card">
+                <div class="icon"><i class="material-icons md-36">meeting_room</i></div>
+                <p class="title">Office Space</p>
+                <p class="text">Office Space: chat and stream video in comfort of office room during sunset</p>
+            </div>
+        </label>
+        <label for="s3" id="slide3"> <div class="card">
+            <div class="icon"><i class="material-icons md-36">coffee</i></div>
+            <p class="title">Open Space</p>
+            <p class="text">Open space: run around an open space and chat with other users.</p>
+        </div></label>
+        <label for="s4" id="slide4"></label>
+        <!-- <label for="s5" id="slide5"></label> -->
+      </section>
+<br>
+<br>
+<button id="btn" class="enter"><span>Enter room</span></button>
+
+</div>
+<script>
+    const btn = document.querySelector('#btn');        
+    const radioButtons = document.querySelectorAll('input[name="slider"]');
+    btn.addEventListener("click", () => {
+        let selectedSize;
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+                selectedSize = radioButton.value;
+                break;
+            }
+        }
+        if (selectedSize == "s3") {
+            location.href="room/open-space.html";
+        }else if (selectedSize == "s2") {
+            location.href="room/office-space.html";
+        }
+        else if (selectedSize == "s4") {
+            
+        }
+       
+    });
+</script>
+
+
+<script>
+    const sandwich = document.querySelector('#sandwich');   
+         
+    sandwich.addEventListener("click", () =>{
+        var overlay = $('<div id="overlay"></div>');
+
+        overlay.show();
+
+        overlay.appendTo(document.body);
+        $('.popup').show();
+        document.getElementById("enter_name").innerHTML="Change your name:";
+        $('.close').click(function () {
+            $('.popup').hide();
+            overlay.appendTo(document.body).remove();
+            return false;
+        });
+
+
+    });
+
+        
+    
+
+    // $('.x').click(function () {
+    //     $('.popup').hide();
+    //     overlay.appendTo(document.body).remove();
+    //     return false;
+    // });
+
+</script>
+<script src="script/pop-up.js"></script>
+
+</body>
+
+</html>

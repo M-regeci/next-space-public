@@ -1,0 +1,343 @@
+@font-face {
+  font-family: logo;
+  src:url('../asset/fonts/Aero.ttf');
+}
+
+html {
+  font-family: garamond;
+  font-size: 20px;
+  padding:0;
+  margin: 0;
+  
+}
+
+body {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(171, 171, 171, 1) 100%, rgba(0, 0, 0, 1) 100%);
+  font-family: helvetica;
+  margin: 0;
+
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+h1 {
+  font-family: logo;
+  font-size: 1.3em;
+  text-align: left;
+  color: white;
+  padding: 0;
+
+  padding-left: 1em;
+}
+
+h2{
+  margin-top: 0;
+ 
+}
+
+#pick{
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-family: logo;
+  letter-spacing: 2px;
+}
+
+a {
+  color: #FAFAFA;
+  padding: 15px 0;
+}
+
+
+@keyframes octocat-wave {
+  0%,
+  100% {
+      transform: rotate(0)
+  }
+  20%,
+  60% {
+      transform: rotate(-25deg)
+  }
+  40%,
+  80% {
+      transform: rotate(10deg)
+  }
+}
+
+
+.card-link {
+  text-decoration: none;
+}
+
+.content {
+  max-width: 1024px;
+  width: 100%;
+  padding: 0 4%;
+  padding-top: 1.5rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .content {
+      padding-top: 300px;
+      flex-direction: column;
+  }
+}
+
+// .card {
+//     width: 100%;
+//     max-width: 300px;
+//     min-width: 200px;
+//     height: 250px;
+//     background-color: #292929;
+//     margin: 10px;
+//     border-radius: 10px;
+//     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+//     border: 2px solid rgba(7, 7, 7, 0.12);
+//     font-size: 16px;
+//     transition: all 0.3s ease;
+//     position: relative;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+//     cursor: pointer;
+//     transition: all 0.3s ease;
+// }
+
+.icon {
+  margin: 0 auto;
+  width: 100%;
+  height: 80px;
+  max-width: 80px;
+  background: linear-gradient(90deg, #EA0A8E 0%, #EA0A8E 40%, rgba(0, 0, 0, 0.28) 60%);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.8s ease;
+  background-position: 0px;
+  background-size: 200px;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.card .title {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  margin-top: 30px;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+.card .text {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+  font-weight: 200;
+  letter-spacing: 2px;
+  opacity: 0;
+  max-height: 0;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  height: 270px;
+}
+
+.card:hover .info {
+  height: 90%;
+}
+
+.card:hover .text {
+  transition: all 0.3s ease;
+  opacity: 1;
+  max-height: 40px;
+}
+
+.card:hover .icon {
+  background-position: -120px;
+  transition: all 0.3s ease;
+}
+
+.card:hover .icon i {
+  background: linear-gradient(90deg, #EA0A8E, #EA0A8E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+[type=radio] {
+  display: none;
+}
+
+#slider {
+  height: 17vw;
+  position: relative;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+}
+
+#slider label {
+  padding-top: 7em;
+  color: white;
+  margin: auto;
+  width: 40%;
+  height: 100%;
+  border-radius: 4px;
+  position: absolute;
+  left: 0; right: 0;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+
+
+
+#s3:checked ~ #slide2, 
+#s4:checked ~ #slide3,
+#s2:checked ~ #slide4 {
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+  transform: translate3d(-15%,0,-100px);
+}
+
+#s2:checked ~ #slide2,
+#s3:checked ~ #slide3, #s4:checked ~ #slide4
+{
+  box-shadow: 0 13px 25px 0 rgba(0,0,0,.3), 0 11px 7px 0 rgba(0,0,0,.19);
+  transform: translate3d(0,0,0);
+}
+
+ #s2:checked ~ #slide3,
+#s3:checked ~ #slide4,
+#s4:checked ~ #slide2
+{
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+  transform: translate3d(15%,0,-100px);
+}
+
+
+//   #slide1 { background: #00BCD4 }
+#slide2 { background-image: url('../asset/image/bcg-office.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+#slide3 { background-image: url('../asset/image/bcg-open.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+#slide4 { background-image: url('../asset/image/comingsoon.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+//   #slide5 { background: #FF5722 }
+
+
+
+.enter {
+  border-radius: 4px;
+  background-color: #EA0A8E;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+  padding: 15px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-top: 8em;
+}
+
+.enter span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.enter span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.enter:hover span {
+  padding-right: 25px;
+}
+
+.enter:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+  opacity: 0.9;
+
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 22px 25px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.25s;
+
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #000000;
+  color: white;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #EA0A8E;
+  color: white;
+}
+
+#spaces{
+  text-align:center;
+  padding-top: 2em;
+  
+}
+
+

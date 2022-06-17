@@ -1,0 +1,78 @@
+@font-face {
+    font-family: logo;
+    src:url('../asset/fonts/Aero.ttf');
+  }
+
+#text{
+    color: white;
+    font-family: logo;
+    font-size: 1em;
+    padding: 1em;
+    display: none;
+}
+#splash {
+position: fixed;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 99;
+color: white;
+background-image:url('../asset/image/bcg2.2.png');
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+width: 100%;
+height: 100%;
+margin: auto;
+}
+#splash2 {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    color: white;
+    background-image:url('../asset/image/bcg.coffee.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+@keyframes move {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.loading {
+    line-height: 1;
+    font-family: logo;
+    font-size: 2em;
+    display: inline-block;
+    animation: move 2s linear infinite;
+}
+
+.loading_bottom {
+    position: absolute;
+    font-family: logo;
+    font-size: 2em;
+    bottom: 1em;
+    left: 1em;
+}

@@ -1,0 +1,68 @@
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+    z-index: 100;
+    display: none;
+}
+
+
+.safety_popup {
+    position: absolute;
+    display: flex;
+    background: #f3f3f3;
+    border-radius: 5px;
+    top: 40%; 
+    left: 39%; 
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 105;
+}
+
+
+#enter_name{
+margin: 20px;
+font-size: 16px;
+font-family:sans-serif;
+}
+.yes-button {
+    border-radius: 3px;
+    background-color: #EA0A8E;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    width: 100px;
+    font-family:sans-serif;
+    margin-left: 20px; 
+    margin-bottom: 10px;
+
+    cursor: pointer;
+}
+
+
+
+.no-button{
+    cursor: pointer;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 3px;
+    background-color:#353434;
+    margin-left: 5px; 
+    margin-bottom: 10px;
+    border: none;
+    font-size: 16px;
+
+
+
+}

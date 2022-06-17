@@ -1,0 +1,174 @@
+<html>
+
+<head>
+    <title>Next Space - Open Space</title>
+    <script src="https://code.jquery.com/jquery-1.8.2.js" type="text/javascript"></script>
+
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+    <script src="https://unpkg.com/networked-aframe@^0.8.0/dist/networked-aframe.min.js"></script>
+    <!-- components -->
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <!-- provisioned on server start -->
+    <script src="/easyrtc/easyrtc.js"></script>
+    <!-- stylesheets -->
+    <link href="../css/media-controls.scss" rel="stylesheet" type="text/css"/>
+    <link href="../css/loading-screen.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/safety-pop-up.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+<!--use "stats" parameter to display stats-->
+<!--use "debug: true" parameter of "networked-scene" to display more information from NAF-->
+<!--renderer="colorManagement: true; physicallyCorrectLights:true;"-->
+<a-scene
+        fog="type: linear; color: #CDCDCD; far: 30; near: 0"
+        networked-scene="   app: next-space;
+                            room: open-space;
+                            adapter: easyrtc;
+                            audio: true;
+                            video: true;
+                            debug: true;
+                            connectOnLoad: true"
+        shadow="type:pcfsoft"
+        excuse-me emojis>
+
+
+
+
+    <a-assets>
+
+        <img id="grid" src="../asset/image/grid.png">
+
+        <template id="avatar-template">
+            <a-entity>
+                <a-entity class="nametag" look-at="#player" position="0 0.75 0" rotation="0 180 0"
+                          scale="5.5 5.5 5.5" text="value: Hello World; align:center;"></a-entity>
+                <a-entity>
+                    <a-box  
+                            color="#f1c797"
+                            depth="0.6"
+                            networked-audio-source
+                            shadow="receive: true; cast: true">
+
+                        <a-entity eye-entity="size:0.1" position="0.27 0.1 -0.31" rotation="0 180 0"></a-entity>
+                        <a-entity position="0.3 0.12 -0.32" pupil-entity="size:0.03" rotation="0 180 0"></a-entity>
+
+                        <a-entity eye-entity="size:0.1" position="-0.27 0.1 -0.31" rotation="0 180 0"></a-entity>
+                        <a-entity position="-0.24 0.12 -0.32" pupil-entity="size:0.03" rotation="0 180 0"></a-entity>
+
+                    </a-box>
+                </a-entity>
+            </a-entity>
+        </template>
+
+    </a-assets>
+    <a-box color="#EA0A8E" position="5.05 2.5 0.4" scale="0.1 4 3.5"></a-box>
+    <a-text color="white" rotation="180 90 180" position="5 3.8 -1" scale="1.5 1.5" value="Connected clients"></a-text>
+    
+    <a-entity layout="type: box; margin: 1.6" scale="1 1" rotation="180 90 180" position="5 3 -1">
+        <a-text color="white"  id="clients" value="ungabunga"></a-text>
+    </a-entity>
+    <a-sphere color="red" position="4 1 -7"></a-sphere>
+    <a-box color="blue" position="-4 1 -4" scale="0.5 0.5 0.5"></a-box>
+
+    <!-- enviroment - lights, ground and sky -->
+    <a-entity
+            light="type:directional; castShadow:true; intensity: 0.2; shadowCameraTop:  20;  shadowCameraRight:  20;  shadowCameraBottom:  -20;  shadowCameraLeft:  -20;"
+            position="50 100 50"></a-entity>
+    <a-entity light="type:ambient; castShadow:false; intensity: 0.9"></a-entity>
+    <a-plane height="1000" material="src: #grid; repeat: 1000 1000; transparent: true;" position="0 0.01 0"
+             rotation="-90 0 0"
+             shadow="receive: true; cast: false" width="1000"></a-plane>
+    <a-plane color="#4D4D4D" height="1000" position="0 0 0" rotation="-90 0 0" shadow="receive: true; cast: false"
+             width="1000"></a-plane>
+    <a-sky color="white"></a-sky>
+
+</a-scene>
+<div id="splash2">
+    <div class="loading">Connecting...</div>
+    <p id="text">Sorry this room is full, please try again later.</p>
+    <span class="loading_bottom">NEXT SPACE - OPEN SPACE</span>
+</div>
+<div id="popups">
+</div>
+
+<div class="safety_popup">
+    <h2 id="enter_name">Do you really want to leave this session ?</h2>
+        <buttom class="yes-button" onclick="history.back()">Yes</buttom>
+        <button class="no-button">No</button>
+    
+</div>
+
+<div class="actions2">
+    <!-- <button class="button" id="audio-button" type="button">Microphone is OFF</button> -->
+    <button class="button" id="audio-button" style="font-size: 16px; left: 500px;">Unmute <i style="font-size: 18px; color: red;" class="fa fa-microphone-slash"></i>
+        <button class="button" id="disconnect-button" style="left: 500px; background-color: red;"><i style="color: white;" class="fa fa-times"></i></button>
+    </button>
+</div>
+
+<script>
+    const sandwich = document.querySelector('#disconnect-button');        
+    sandwich.addEventListener("click", () =>{
+
+        var overlay = $('<div id="overlay"></div>');
+        overlay.show();
+        overlay.appendTo(document.body);
+        $('.safety_popup').show();
+        $('.no-button').click(function () {
+            $('.safety_popup').hide();
+            overlay.appendTo(document.body).remove();
+            return false;
+        });
+
+
+    });
+</script>
+
+<div class="emoji">
+
+    <img src="../asset/emojis/laugh.png" onclick="makeSmile(); showEmoji('../asset/emojis/laugh.png')" style="left: 10px"
+         class="screen-btn hov"/>
+    <img src="../asset/emojis/sad.png" onclick="sad(); showEmoji('../asset/emojis/sad.png')" style="left: 60px" class="screen-btn"/>
+    <img src="../asset/emojis/thumbs-up.png" onclick="thumbsUp(); showEmoji('../asset/emojis/thumbs-up.png')" style="left: 110px" class="screen-btn"/>
+    <img src="../asset/emojis/thumbs-down.png" onclick="thumbsDown(); showEmoji('../asset/emojis/thumbs-down.png')" style="left: 160px"
+         class="screen-btn"/>
+    <img src="../asset/emojis/tired.png" onclick="tired(); showEmoji('../asset/emojis/tired.png')" style="left: 210px" class="screen-btn"/>
+
+    <img src="../asset/emojis/raise.png" onclick="raise(); showEmoji('../asset/emojis/raise.png')" style="left: 260px" class="screen-btn"/>
+    <img src="../asset/emojis/heart-eyes.png" onclick="love(); showEmoji('../asset/emojis/heart-eyes.png')" style="left: 310px" class="screen-btn"/>
+    <img src="../asset/emojis/angry.png" style="left: 360px" onclick="angry(); showEmoji('../asset/emojis/angry.png')" class="screen-btn"/>
+    <img src="../asset/emojis/surprised.png" onclick="makeSurprise(); showEmoji('../asset/emojis/surprised.png')" style="left: 410px"
+         class="screen-btn"/>
+    <img id="myImage" style="visibility: hidden" class="main-emoji"/>
+
+</div>
+
+<div class="dropdown">
+    <button class="dropbtn">Players</button>
+    <div id="add" class="dropdown-content">
+    </div>
+</div>
+
+
+<!-- local scripts -->
+<script src="../script/on-connect/open-space-on-connect.js"></script>
+<script src="../script/audio-controls.js"></script>
+<script src="../script/media-controller.js"></script>
+<script src="../script/roles.js"></script>
+<script src="../script/emoji.js"></script>
+
+
+<script src="../script/entity/eye-entity.js"></script>
+<script src="../script/entity/pupil-entity.js"></script>
+<script src="../script/nametag.js"></script>
+
+<script src="../script/on-connect/client-handler.js"></script>
+<script src="../script/on-connect/spawn-entities.js"></script>
+
+</body>
+
+</html>
